@@ -31,8 +31,8 @@ public class SearchController {
 	 * @param redirectAttributes : 出力ユーザー情報
 	 * @return 出力画面へ遷移
 	 */
-	@RequestMapping("/search")
-	public String search(String id,RedirectAttributes redirectAttributes) {
+	@RequestMapping("/input")
+	public String input(String id,RedirectAttributes redirectAttributes) {
 		User user = userDao.load(Integer.parseInt(id));
 		redirectAttributes.addFlashAttribute("user", user);
 		return "redirect:/search/output";

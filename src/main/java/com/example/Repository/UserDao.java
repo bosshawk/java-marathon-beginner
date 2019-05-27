@@ -27,7 +27,7 @@ public class UserDao {
 	
 	
 	public User load(Integer id) {
-		String sql = "SELECT * FROM info WHERE id=:id";
+		String sql = "SELECT id,name,age,address FROM info WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		return template.queryForObject(sql, param, USER_ROW_MAPPER);
 	}
