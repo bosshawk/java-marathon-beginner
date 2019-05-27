@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -15,13 +14,12 @@ public class NameReceiveController {
 	}
 	
 	/**
-	 * @param name
-	 * @param redirectAttributes
-	 * @param model
+	 * @param name : 入力情報
+	 * @param redirectAttributes : 出力情報
 	 * @return 出力画面にリダイレクト
 	 */
 	@RequestMapping("/input")
-	public String input(String name,RedirectAttributes redirectAttributes,Model model) {
+	public String input(String name,RedirectAttributes redirectAttributes) {
 		
 		redirectAttributes.addFlashAttribute("name", name);
 		return "redirect:/name/output";
