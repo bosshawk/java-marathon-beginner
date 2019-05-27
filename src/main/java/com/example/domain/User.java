@@ -13,6 +13,13 @@ public class User {
 		return "User [name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
 
+	public User(String name, Integer age, String address) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.address = address;
+	}
+
 	public String getName() {
 		return name;
 	}
