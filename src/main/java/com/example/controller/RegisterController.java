@@ -1,8 +1,5 @@
 package com.example.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +13,19 @@ public class RegisterController {
 	@Autowired
 	private ServletContext application;
 
+	/**
+	 * @return 入力画面へフォワード
+	 */
 	@RequestMapping("")
 	public String index() {
 		return "buygoods";
 	}
 	
+	/**
+	 * 商品の合計を
+	 * @param goods : 商品の価格
+	 * @return 合計を計算しoutputへリダイレクト
+	 */
 	@RequestMapping("/input")
 	public String input(String[] goods) {
 		Integer total=0;
@@ -31,7 +36,7 @@ public class RegisterController {
 			if(intGood!=null) {
 				total += intGood;
 			}else {
-				isError = true;
+				isError=true;
 			}
 		}
 		
@@ -39,13 +44,16 @@ public class RegisterController {
 			application.setAttribute("total", total);
 			Integer taxTotal = (int)(total*1.08);
 			application.setAttribute("taxTotal", taxTotal);
-			return "redirect:/output";
+			return "redirect:/register/output";
 		}else {
 			return index();
 		}
 		
 	}
 	
+	/**
+	 * @return 出力へフォワード
+	 */
 	@RequestMapping("/output")
 	public String output() {
 		return "totalprice";
