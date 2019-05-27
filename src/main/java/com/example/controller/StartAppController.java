@@ -24,7 +24,10 @@ public class StartAppController {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("")
+	/**
+	 * @return 
+	 */
+	@RequestMapping("/")
 	public String index() {
 		List<Item> itemListCart = new LinkedList<>();
 		session.setAttribute("itemListCart", itemListCart);
@@ -35,9 +38,13 @@ public class StartAppController {
 		itemList.add(new Item("ファイルセット",2000));
 		application.setAttribute("itemList", itemList);
 		
-		return "itemAndCart";
+		return "redirect:/startapp/viewCart";
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/viewCart")
 	public String viewCart(Model model) {
 		List<Item> itemList = new LinkedList<>();
@@ -49,26 +56,32 @@ public class StartAppController {
 		return "itemAndCart";
 	}
 	
+	/**
+	 * @param index
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/insert")
 	public String insert(int index,Model model) {
 		List<Item> itemList = (List<Item>)application.getAttribute("itemList");
 		List<Item> itemListCart = (List<Item>)session.getAttribute("itemListCart");
 		itemListCart.add(itemList.get(index));
 		session.setAttribute("itemListCart", itemListCart);
-		return viewCart(model);
+		return "redirect:/startapp/viewCart";
 	}
 	
+	/**
+	 * @param index
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/delete")
 	public String delete(int index,Model model) {
 		List<Item> itemListCart = (List<Item>)session.getAttribute("itemListCart");
 		itemListCart.remove(index);
 		session.setAttribute("itemListCart", itemListCart);
-		return viewCart(model);
+		return "redirect:/startapp/viewCart";
 	}
 	
-	@RequestMapping("/show")
-	public String show() {
-		return "itemAndCart";
-	}
 
 }

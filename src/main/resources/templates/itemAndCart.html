@@ -13,7 +13,7 @@
 				<table>
 					<tr th:each="item,status:${application.itemList}">
 						<td th:text="${item.name}"></td>
-						<td th:text="${item.price}"></td>
+						<td th:text="${#numbers.formatInteger(item.price,1,'COMMA')+'円'}"></td>
 						<td>
 							<button name="index" th:value="${status.index}">カートへ</button>
 						</td>
@@ -27,13 +27,15 @@
 				<table>
 					<tr th:each="item,status:${session.itemListCart}">
 						<td th:text="${item.name}"></td>
-						<td th:text="${item.price}"></td>
+						<td th:text="${#numbers.formatInteger(item.price,1,'COMMA')+'円'}"></td>
 						<td>
 							<button name="index" th:value="${status.index}">削除</button>
 						</td>
 					<tr>
 				</table>
 			</form>
+			<div> 合計</div>
+			<div th:text="${#numbers.formatInteger(totalPrice,1,'COMMA') + '円'}"></div>
 		</td>
 		</tr>
 	</table>
