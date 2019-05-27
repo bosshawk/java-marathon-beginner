@@ -13,11 +13,21 @@ public class CalcController {
 	@Autowired
 	private HttpSession session;
 	
+	/**
+	 * @return inputへフォワード
+	 */
 	@RequestMapping("")
 	public String index() {
 		return "inputvalue";
 	}
 	
+	/**
+	 * 数値を入力して計算し出力へリダイレクト.
+	 * 
+	 * @param num1 : 入力数値1
+	 * @param num2 : 入力数値2
+	 * @return outputへリダイレクト
+	 */
 	@RequestMapping("/input")
 	public String input(String num1,String num2) {
 		
@@ -36,11 +46,17 @@ public class CalcController {
 		return "redirect:/calc/output";
 	}
 	
+	/**
+	 * @return outputへフォワード
+	 */
 	@RequestMapping("/output")
 	public String output() {
-		return "output";
+		return "outputvalue";
 	}
 	
+	/**
+	 * @return output2へフォワード
+	 */
 	@RequestMapping("/output2")
 	public String output2() {
 		return "outputvalue2";
