@@ -1,6 +1,8 @@
 package com.example.domain;
 
 public class User {
+	/** ID */
+	private Integer id;
 	/** 名前 */
 	private String name;
 	/** 年齢 */
@@ -10,15 +12,25 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", age=" + age + ", address=" + address + "]";
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
+
 	public User() {
 	}
+
 	public User(String name, Integer age, String address) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.address = address;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
