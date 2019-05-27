@@ -12,7 +12,8 @@ public class User {
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
-
+	public User() {
+	}
 	public User(String name, Integer age, String address) {
 		super();
 		this.name = name;
