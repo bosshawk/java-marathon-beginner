@@ -13,6 +13,15 @@ public class Item {
 		return "Item [name=" + name + ", price=" + price + "]";
 	}
 
+	public Item() {
+	}
+
+	public Item(String name, Integer price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+
 	public String getName() {
 		return name;
 	}
