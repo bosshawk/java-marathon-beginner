@@ -14,6 +14,8 @@ public class NameReceiveController {
 	}
 	
 	/**
+	 * 入力画面へ遷移する.
+	 * 
 	 * @param name : 入力情報
 	 * @param redirectAttributes : 出力情報
 	 * @return 出力画面にリダイレクト
