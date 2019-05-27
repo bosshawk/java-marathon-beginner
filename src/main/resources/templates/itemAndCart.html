@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<tr>
+		<td>
+			<div>商品一覧</div>
+			<form method="post" th:action="@{/startapp/insert}">
+				<table>
+					<tr th:each="item,status:${application.itemList}">
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						<td>
+							<button name="index" th:value="${status.index}">カートへ</button>
+						</td>
+					<tr>
+				</table>
+			</form>
+		</td>
+		<td>
+			<div>ショッピングカート</div>
+			<form method="post" th:action="@{/startapp/delete}">
+				<table>
+					<tr th:each="item,status:${session.itemListCart}">
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						<td>
+							<button name="index" th:value="${status.index}">削除</button>
+						</td>
+					<tr>
+				</table>
+			</form>
+		</td>
+		</tr>
+	</table>
+</body>
+</html>

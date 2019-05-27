@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -25,29 +26,45 @@ public class StartAppController {
 	
 	@RequestMapping("")
 	public String index() {
-		List<Item> itemList = new ArrayList<>();
-		session.setAttribute("itemList", itemList);
+		List<Item> itemListCart = new LinkedList<>();
+		session.setAttribute("itemListCart", itemListCart);
 		
-		itemList = new ArrayList<>();
+		List<Item> itemList = new LinkedList<>();
 		itemList.add(new Item("手帳ノート",1000));
 		itemList.add(new Item("文房具セット",1500));
 		itemList.add(new Item("ファイルセット",2000));
 		application.setAttribute("itemList", itemList);
 		
-		return "redirect:/startapp/show";
+		return "itemAndCart";
 	}
 	
+	@RequestMapping("/viewCart")
 	public String viewCart(Model model) {
-		List<Item> itemList = new ArrayList();
+		List<Item> itemList = new LinkedList<>();
 		int totalPrice = 0;
-		for(Item item:(List<Item>)session.getAttribute("itemList")) {
+		for(Item item:(List<Item>)session.getAttribute("itemListCart")) {
 			totalPrice += item.getPrice();
 		}
 		model.addAttribute("totalPrice",totalPrice);
 		return "itemAndCart";
 	}
 	
+	@RequestMapping("/insert")
+	public String insert(int index,Model model) {
+		List<Item> itemList = (List<Item>)application.getAttribute("itemList");
+		List<Item> itemListCart = (List<Item>)session.getAttribute("itemListCart");
+		itemListCart.add(itemList.get(index));
+		session.setAttribute("itemListCart", itemListCart);
+		return viewCart(model);
+	}
 	
+	@RequestMapping("/delete")
+	public String delete(int index,Model model) {
+		List<Item> itemListCart = (List<Item>)session.getAttribute("itemListCart");
+		itemListCart.remove(index);
+		session.setAttribute("itemListCart", itemListCart);
+		return viewCart(model);
+	}
 	
 	@RequestMapping("/show")
 	public String show() {
